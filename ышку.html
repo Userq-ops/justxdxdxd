@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="numberInput" placeholder="Введите число">
+                <button onclick="checkPrime()">Проверить</button>
+                <p id="resauto"></p>
+    </div>
+    <script>
+        function isPrime(num) {
+    if (num <= 1) {
+        return false;
+    }
+    if (num <= 3) {
+        return true;
+    }
+    if (num % 2 === 0 || num % 3 === 0) {
+        return false;
+    }
+    for (let i = 5; i * i <= num; i += 6) {
+        if (num % i === 0 || num % (i + 2) === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function checkPrime() {
+    const numberInput = parseInt(document.getElementById("numberInput").value);
+    const resultElement = document.getElementById("resauto");
+
+    if (isNaN(numberInput)) {
+        resultElement.innerText = "Пожалуйста, введите корректное число.";
+    } else {
+        const isPrimeNumber = isPrime(numberInput);
+        if (isPrimeNumber) {
+            resultElement.innerText = `${numberInput} - простое число.`;
+        } else {
+            resultElement.innerText = `${numberInput} - не является простым числом.`;
+        }
+    }
+}
+    </script>
+</body>
+</html>
